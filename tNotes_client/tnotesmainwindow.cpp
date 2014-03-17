@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QSizePolicy>
 #include <QGroupBox>
+#include <QSplitter>
 
 #include "tnotesmainwindow.h"
 #include "tnotestexteditor.h"
@@ -32,14 +33,26 @@ tNotesMainWindow::tNotesMainWindow(QWidget *parent)
 	/*
 	 * set layout
 	 */
-	QVBoxLayout *editorLayout = new QVBoxLayout;
-	editorLayout->addWidget(searchTool, 1);
-	editorLayout->addWidget(notesTextEditor, 10);
+	QHBoxLayout *toolLayout = new QHBoxLayout;
+	toolLayout->addStretch(3);
+	toolLayout->addWidget(searchTool, 1);
 
-	QHBoxLayout *mainLayout = new QHBoxLayout;
-	mainLayout->addWidget(notesBookCategory, 1);
-	mainLayout->addWidget(notesCategory, 1);
-	mainLayout->addLayout(editorLayout, 2);
+	QHBoxLayout *noteLayout = new QHBoxLayout;
+	splitter = new QSplitter;
+	splitter->setChildrenCollapsible(false);
+	splitter->addWidget(notesBookCategory);
+	splitter->addWidget(notesCategory);
+	splitter->addWidget(notesTextEditor);
+	noteLayout->addWidget(splitter);
+	/*  
+	noteLayout->addWidget(notesBookCategory, 1);
+	noteLayout->addWidget(notesCategory, 1);
+	noteLayout->addWidget(notesTextEditor, 2);
+	*/
+
+	QVBoxLayout *mainLayout = new QVBoxLayout;
+	mainLayout->addLayout(toolLayout, 1);
+	mainLayout->addLayout(noteLayout, 9);
 	
 	centralWidget->setLayout(mainLayout);
 }
