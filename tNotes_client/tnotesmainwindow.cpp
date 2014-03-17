@@ -26,9 +26,12 @@ tNotesMainWindow::tNotesMainWindow(QWidget *parent)
 			QSizePolicy::Expanding);
 	
 	notesBookCategory = new tNotesBookCategory;
+	notesBookCategory->setMinimumSize(150, 300);
 	notesTextEditor = new tNotesTextEditor;
+	notesTextEditor->setMinimumSize(300, 300);
 	searchTool = new tNotesSearchTool;
 	notesCategory = new tNotesCategory;
+	notesCategory->setMinimumSize(150, 300);
 
 	/*
 	 * set layout
@@ -41,8 +44,11 @@ tNotesMainWindow::tNotesMainWindow(QWidget *parent)
 	splitter = new QSplitter;
 	splitter->setChildrenCollapsible(false);
 	splitter->addWidget(notesBookCategory);
+	splitter->setStretchFactor(splitter->indexOf(notesBookCategory), 1);
 	splitter->addWidget(notesCategory);
+	splitter->setStretchFactor(splitter->indexOf(notesCategory), 1);
 	splitter->addWidget(notesTextEditor);
+	splitter->setStretchFactor(splitter->indexOf(notesTextEditor), 5);
 	noteLayout->addWidget(splitter);
 	/*  
 	noteLayout->addWidget(notesBookCategory, 1);

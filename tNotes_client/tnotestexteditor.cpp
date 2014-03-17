@@ -21,7 +21,6 @@ tNotesTextEditor::tNotesTextEditor(QWidget *parent)
 
 	//noteEditorGroupBox = new QGroupBox(tr("noteEditor"), this);
 	noteEditor = new QTextEdit;
-	noteEditor->setMinimumWidth(300);
 	
 	noteTitle = new QLabel(getTitle());
 
